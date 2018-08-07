@@ -10,6 +10,7 @@ class Contact
 
   def add_number(number_to_add)
     numbers << number_to_add
+    numbers.flatten!
   end
 
   def valid?

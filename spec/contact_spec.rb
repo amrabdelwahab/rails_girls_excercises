@@ -18,6 +18,17 @@ describe Contact do
         .from([])
         .to(['********'])
     end
+
+    context 'when number to add is an array of numbers' do
+      let(:number_to_add) { ['123', '456'] }
+
+      it 'should add the phone number to the contact numbers' do
+        expect { subject }
+          .to change { contact.numbers }
+          .from([])
+          .to(['123', '456'])
+      end
+    end
   end
 
   describe 'valid?' do
