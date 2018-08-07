@@ -65,4 +65,32 @@ describe Contact do
       it { is_expected.not_to be_valid }
     end
   end
+
+  describe '#merge!' do
+    subject { contact.merge!(other_contact) }
+
+    let(:other_contact) { Contact.new(other_name, ['123', '456']) }
+
+    context 'when other contact name is the same' do
+      let(:other_name) { name }
+
+      it 'merges the two contact numbers' do
+        expect { subject }
+          .to change { contact.numbers }
+          .from([])
+          .to(['123', '456'])
+      end
+    end
+
+
+
+    context 'when other contact name is not the same' do
+      let(:other_name) { 'other_name' }
+
+      it 'does not change the original contact numbers' do
+        expect { subject }
+          .not_to change { contact.numbers }
+      end
+    end
+  end
 end

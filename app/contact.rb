@@ -16,4 +16,9 @@ class Contact
   def valid?
     numbers.any? && !name.to_s.strip.empty?
   end
+
+  def merge!(other_contact)
+    return unless other_contact.name == name
+    add_number(other_contact.numbers)
+  end
 end
