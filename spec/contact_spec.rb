@@ -82,8 +82,6 @@ describe Contact do
       end
     end
 
-
-
     context 'when other contact name is not the same' do
       let(:other_name) { 'other_name' }
 
@@ -91,6 +89,24 @@ describe Contact do
         expect { subject }
           .not_to change { contact.numbers }
       end
+    end
+  end
+
+  describe '#==' do
+    subject { contact == other_contact }
+
+    let(:other_contact) { Contact.new(other_name, ['123', '456']) }
+
+    context 'when other contact name is the same' do
+      let(:other_name) { name }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when other contact name is not the same' do
+      let(:other_name) { 'other_name' }
+
+      it { is_expected.to be_falsy }
     end
   end
 end
