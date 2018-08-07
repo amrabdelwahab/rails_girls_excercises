@@ -41,13 +41,19 @@ describe ContactList do
     let(:existing_contact) {  Contact.new('amr', ['12345']) }
 
 
-    context 'when key exists' do
+    context 'when key exists as a name' do
       let(:key) { 'amr' }
 
       it { is_expected.to eq existing_contact }
     end
 
-    context 'when key does not exist' do
+    context 'when key exists as a number' do
+      let(:key) { '12345' }
+
+      it { is_expected.to eq existing_contact }
+    end
+
+    context 'when key does not exist as a name or number' do
       let(:key) { 'non_existent' }
 
       it { is_expected.to be_nil }

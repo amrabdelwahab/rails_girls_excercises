@@ -16,7 +16,7 @@ class ContactList
 
   def search(key)
     contacts.find do |contact|
-      contact.name == key
+      contact.name == key || contact.numbers.include?(key)
     end
   end
 end
